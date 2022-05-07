@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  php:
+    build: .
+    image: php:8.1-apache
+    container_name: Teste_WebJump
+    ports: 
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - default
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    container_name: mysql-webJump
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      # - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+
+    environment: 
+      - MYSQL_DATABASE=db_teste_WebJump
+      - MYSQL_USER=webJump
+      - MYSQL_PASSWORD=12345
+      - MYSQL_ROOT_PASSWORD=12345
+    networks:
+      - default
+
+volumes:
+  db_data:
