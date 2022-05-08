@@ -1,3 +1,16 @@
+<?php 
+    session_start();
+    require "../../config.php";
+    require_once "../../vendor/autoload.php";
+    
+    if($pdo){
+        $categoryPdo = new CategoryDaoMySql($pdo);
+        $getAllCategories = $categoryPdo -> findAll();
+    }else
+        $getAllCategories = false;
+    
+?>
+
 <!doctype html>
 <html ⚡>
 <head>
@@ -54,38 +67,29 @@
             <span class="data-grid-cell-content">Actions</span>
         </th>
       </tr>
-      <tr class="data-row">
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Category 1 Name</span>
-        </td>
-      
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Category 1 Code</span>
-        </td>
-      
-        <td class="data-grid-td">
-          <div class="actions">
-            <div class="action edit"><span>Edit</span></div>
-            <div class="action delete"><span>Delete</span></div>
-          </div>
-        </td>
-      </tr>
-      <tr class="data-row">
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Category 2 Name</span>
-        </td>
-      
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Category 2 Code</span>
-        </td>
-      
-        <td class="data-grid-td">
-          <div class="actions">
-            <div class="action edit"><span>Edit</span></div>
-            <div class="action delete"><span>Delete</span></div>
-          </div>
-        </td>
-      </tr>
+
+      <?php if($getAllCategories != false): ?>
+        <?php foreach($getAllCategories as $item): ?>
+
+            <tr class="data-row">
+                <td class="data-grid-td">
+                <span class="data-grid-cell-content"><?= $item -> getName() ?></span>
+                </td>
+            
+                <td class="data-grid-td">
+                <span class="data-grid-cell-content"><?= $item -> getCod() ?></span>
+                </td>
+            
+                <td class="data-grid-td">
+                <div class="actions">
+                    <a href="updateCategoryAction.php" class="action edit action-link"><span>Edit</span></div>
+                    <a href="deleteCategoryAction.php" class="action delete action-link"><span>Delete</span></div>
+                </div>
+                </td>
+            </tr>
+
+        <?php endforeach; ?>     
+       <?php endif; ?> 
     </table>
   </main>
   <!-- Main Content -->

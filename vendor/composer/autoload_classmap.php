@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Category' => $baseDir . '/class/models/Category.php',
+    'CategoryDAO' => $baseDir . '/class/models/Category.php',
     'CategoryDaoMySql' => $baseDir . '/class/dao/CategoryDaoMySql.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'PHPUnit\\Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',

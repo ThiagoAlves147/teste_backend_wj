@@ -245,6 +245,15 @@ body {
       font-size: 20px;  
     }
 
+    .action-link {
+      text-decoration: none;
+      color: rgb(99, 99, 210);
+    }
+
+    .action-link:hover {
+      text-decoration: underline;
+    }
+
     .input-field {
       padding: 10px 30px;
     }

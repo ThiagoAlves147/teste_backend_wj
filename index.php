@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     require "config.php";
     require_once "vendor/autoload.php";
 

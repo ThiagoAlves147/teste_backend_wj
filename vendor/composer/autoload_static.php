@@ -71,6 +71,8 @@ class ComposerStaticIniteed6213f89554d4f9d96871a2714a8d3
     );
 
     public static $classMap = array (
+        'Category' => __DIR__ . '/../..' . '/class/models/Category.php',
+        'CategoryDAO' => __DIR__ . '/../..' . '/class/models/Category.php',
         'CategoryDaoMySql' => __DIR__ . '/../..' . '/class/dao/CategoryDaoMySql.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',

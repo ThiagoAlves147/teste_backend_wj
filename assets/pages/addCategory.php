@@ -40,15 +40,15 @@
   <main class="content">
     <h1 class="title new-item">New Category</h1>
     
-    <form action="POST" method="">
+    <form action="../../actions/addCategoryAction.php" method="POST">
       <div class="input-field">
         <label for="category-name" class="label">Category Name</label>
-        <input type="text" id="category-name" class="input-text" />
+        <input type="text" id="category-name" class="input-text" name="name"/>
         
       </div>
       <div class="input-field">
         <label for="category-code" class="label">Category Code</label>
-        <input type="text" id="category-code" class="input-text" />
+        <input type="text" id="category-code" class="input-text" name="cod"/>
         
       </div>
       <div class="actions-form">
