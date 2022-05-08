@@ -1,3 +1,11 @@
+<?php 
+    require "config.php";
+    require_once "vendor/autoload.php";
+
+    $teste = new CategoryDaoMySql($pdo);
+
+?>
+
 <!doctype html>
 <html ⚡>
 <head>
