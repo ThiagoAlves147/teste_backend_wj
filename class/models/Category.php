@@ -34,6 +34,9 @@ class Category {
 
 interface CategoryDAO {
     public function addCategory(Category $c);
+    public function updateCategory(Category $c);
+    public function deleteCategory($id);
     public function findAll();
+    public function findById($id);
     public function findByNameOrCod($cod, $name);
 }

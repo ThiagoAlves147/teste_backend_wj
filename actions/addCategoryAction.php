@@ -1,13 +1,13 @@
 <?php
+session_start();
 require_once "../config.php";
 require_once "../vendor/autoload.php";
 
-$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$cod = filter_input(INPUT_POST, 'cod', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-if($name && $cod){
+if($id){
     $categoryPdo = new CategoryDaoMySql($pdo);
-    $find = $categoryPdo -> findByNameOrCod($cod, $name);
+    $find = $categoryPdo -> findById($id);
 
     if($find === false){
         $category = new Category();
@@ -15,14 +15,18 @@ if($name && $cod){
         $category -> setName($name);
         $categoryPdo -> addCategory($category);
 
-        $_SESSION['sucess'] = 'Action was a success';
+        $_SESSION['success'] = "Action was a success";
 
         header('Location: ../assets/pages/categories.php');
         exit;
 
     }else{
-        $_SESSION['error'] = 'Error, ainda pensando';
+        $_SESSION['error'] = 'Request failed!';
         header('Location: ../assets/pages/addCategory.php');
         exit;
     }
 }
+
+$_SESSION['error'] = 'Não foi possivél atualizar, favor tentar novamente!';
+header('Location: ../assets/pages/addCategory.php');
+exit;

@@ -8,7 +8,7 @@
         $getAllCategories = $categoryPdo -> findAll();
     }else
         $getAllCategories = false;
-    
+        
 ?>
 
 <!doctype html>
@@ -51,6 +51,19 @@
 <!-- Header --><body>
   <!-- Main Content -->
   <main class="content">
+    <?php if(isset($_SESSION['success'])): ?>
+        <div class="success">
+            <div>
+                <?php
+                    echo $_SESSION['success'] //Exibe a menssagem de erro
+                ?>  
+            </div>
+
+            <div>
+                <img src="../images/bt-close.png" alt="close" width="20px" id="btn-close-success" style="cursor: pointer;">
+            </div>
+        </div>
+    <?php endif; ?>
     <div class="header-list-page">
       <h1 class="title">Categories</h1>
       <a href="addCategory.php" class="btn-action">Add new Category</a>
@@ -82,8 +95,8 @@
             
                 <td class="data-grid-td">
                 <div class="actions">
-                    <a href="updateCategoryAction.php" class="action edit action-link"><span>Edit</span></div>
-                    <a href="deleteCategoryAction.php" class="action delete action-link"><span>Delete</span></div>
+                    <a href="../pages/editCategory.php?id=<?= $item -> getId() ?>" class="action edit action-link"><span>Edit</span></div>
+                    <a href="../../actions/deleteCategoryAction.php?id=<?= $item -> getId() ?>" class="action delete action-link" onclick="return confirm('Tem certeza que deseja deletar?')"><span>Delete</span></div>
                 </div>
                 </td>
             </tr>
@@ -95,13 +108,24 @@
   <!-- Main Content -->
 
   <!-- Footer -->
-<footer>
-	<div class="footer-image">
-	  <img src="../images/go-jumpers.png" width="119" height="26" alt="Go Jumpers" />
-	</div>
-	<div class="email-content">
-	  <span>go@jumpers.com.br</span>
-	</div>
-</footer>
- <!-- Footer --></body>
+  <footer>
+    <div class="footer-image">
+    <img src="../images/go-jumpers.png" width="119" height="26" alt="Go Jumpers" />
+    </div>
+    <div class="email-content">
+    <span>go@jumpers.com.br</span>
+    </div>
+  </footer>
+  <!-- Footer -->
+
+  <?php session_destroy() ?>
+  
+<script>
+    let btnClose = document.querySelector('#btn-close-success')
+    btnClose.addEventListener('click', (e) => {
+        document.querySelector('.success').style.display = "none";
+    })
+</script>
+
+</body>
 </html>

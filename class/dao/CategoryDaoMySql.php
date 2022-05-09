@@ -14,6 +14,32 @@ class CategoryDaoMySql implements CategoryDAO {
         $sql -> execute();
     }
 
+    public function updateCategory(Category $c){
+        $sql = $this -> pdo -> prepare("UPDATE categorias SET codigo=:cod, nome=:name WHERE id=:id");
+        $sql -> bindValue(':id', $c -> getId());
+        $sql -> bindValue(':cod', $c -> getCod());
+        $sql -> bindValue(':name', $c -> getName());
+        $sql -> execute();
+
+        if(!$sql -> rowCount() > 0){
+            return false;
+        }
+
+        return true;
+    }
+
+    public function deleteCategory($id){
+        $sql = $this -> pdo -> prepare('DELETE FROM categorias WHERE id=:id');
+        $sql -> bindValue(':id', $id);
+        $sql -> execute();
+
+        if(!$sql -> rowCount() > 0){
+            return false;
+        }
+
+        return true;
+    }
+
     public function findAll(){
         try{
             $sql = $this -> pdo -> prepare('SELECT * FROM categorias');
@@ -37,6 +63,25 @@ class CategoryDaoMySql implements CategoryDAO {
             $error = $e -> getMessage();
             die();
         }
+    }
+
+    public function findById($id){
+        $sql = $this -> pdo -> prepare('SELECT * FROM categorias WHERE id=:id');
+        $sql -> bindValue(':id', $id);
+        $sql -> execute();
+
+        if($sql -> rowCount() > 0){
+            $item = $sql -> fetch();
+
+            $category = new Category();
+            $category -> setId($item['id']);
+            $category -> setCod($item['codigo']);
+            $category -> setName($item['nome']);
+
+            return $category;
+        }
+
+        return false;
     }
 
     public function findByNameOrCod($cod, $name){ //

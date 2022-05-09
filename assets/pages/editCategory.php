@@ -1,9 +1,34 @@
-<?php session_start() ?>
+<?php 
+    session_start();
+    require_once "../../config.php";
+    require_once "../../vendor/autoload.php"; 
+
+    if($pdo != false){
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+        if($id){
+            $category = new CategoryDaoMySql($pdo);
+            $item = $category -> findById($id);
+
+            if(!$item){
+                //$_SESSION['error'] = 'Category not found';
+                header("Location: categories.php");
+                exit;
+            }
+
+        }else{
+            //$_SESSION['error'] = 'Category not found';
+            header("Location: categories.php");
+            exit;
+        }
+            
+    }
+?>
 
 <!doctype html>
 <html ⚡>
 <head>
-  <title>Webjump | Backend Test | Add Category</title>
+  <title>Webjump | Backend Test | Edit Category</title>
   <meta charset="utf-8">
 
 <link  rel="stylesheet" type="text/css"  media="all" href="../css/style.css" />
@@ -53,23 +78,25 @@
             </div>
         </div>
     <?php endif; ?>
-    <h1 class="title new-item">New Category</h1>
+    <h1 class="title new-item">Edit Category</h1>
     
-    <form action="../../actions/addCategoryAction.php" method="POST">
-      <div class="input-field">
-        <label for="category-name" class="label">Category Name</label>
-        <input type="text" id="category-name" class="input-text" name="name"/>
-        
-      </div>
-      <div class="input-field">
-        <label for="category-code" class="label">Category Code</label>
-        <input type="text" id="category-code" class="input-text" name="cod"/>
-        
-      </div>
-      <div class="actions-form">
-        <a href="categories.php" class="action back">Back</a>
-        <input class="btn-submit btn-action"  type="submit" value="Save" />
-      </div>
+    <form action="../../actions/updateCategoryAction.php" method="POST">
+        <input type="hidden" name="id" value="<?= $item -> getId()?>"/>
+
+        <div class="input-field">
+            <label for="category-name" class="label">Category Name</label>
+            <input type="text" id="category-name" class="input-text" name="name" value="<?= $item -> getName() ?>"/>
+        </div>
+
+        <div class="input-field">
+            <label for="category-code" class="label">Category Code</label>
+            <input type="text" id="category-code" class="input-text" name="cod" value="<?= $item -> getCod() ?>"/>
+        </div>
+
+        <div class="actions-form">
+            <a href="categories.php" class="action back">Back</a>
+            <input class="btn-submit btn-action"  type="submit" value="Save" />
+        </div>
     </form>
   </main>
   <!-- Main Content -->

@@ -286,6 +286,27 @@ body {
       width: 200px;
       margin: 15px 25px;
     }
+
+    .success, .error {
+      padding: 1.1rem;
+      margin-bottom: 5px;
+      border-radius: .25rem;
+      display: flex;
+      border-color: 1px solid #badbcc;;
+      justify-content: space-between;
+      background-color: #d1e7dd;
+      color: #0f5132;
+      height: auto;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .error {
+      background-color: #f8d7da;
+      color: #842029;
+      border-color: #f5c2c7;
+    }
+
     @media only screen and (max-width: 360px) {
       .product-list img {
         width: 144px;
