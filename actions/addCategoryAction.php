@@ -3,11 +3,12 @@ session_start();
 require_once "../config.php";
 require_once "../vendor/autoload.php";
 
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$cod = filter_input(INPUT_POST, 'cod', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-if($id){
+if($name && $cod){
     $categoryPdo = new CategoryDaoMySql($pdo);
-    $find = $categoryPdo -> findById($id);
+    $find = $categoryPdo -> findByNameOrCod($cod, $name);
 
     if($find === false){
         $category = new Category();
@@ -27,6 +28,6 @@ if($id){
     }
 }
 
-$_SESSION['error'] = 'Não foi possivél atualizar, favor tentar novamente!';
+$_SESSION['error'] = 'Não foi possivel adicionar, favor tentar novamente!';
 header('Location: ../assets/pages/addCategory.php');
 exit;

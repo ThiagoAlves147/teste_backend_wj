@@ -9,7 +9,7 @@ $cod = filter_input(INPUT_POST, 'cod', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 if($name && $cod && $id){
     $categoryPdo = new CategoryDaoMySql($pdo);
-    $find = $categoryPdo -> findByNameOrCod($cod, $name);
+    $find = $categoryPdo -> findById($id);
 
     if($find != false){
         $category = new Category();

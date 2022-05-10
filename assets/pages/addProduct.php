@@ -1,3 +1,16 @@
+<?php 
+    session_start();
+    require "../../config.php";
+    require_once "../../vendor/autoload.php";
+    
+    if($pdo){
+        $categoryPdo = new CategoryDaoMySql($pdo);
+        $getAllCategories = $categoryPdo -> findAll();
+    }else
+        $getAllCategories = false;
+        
+?>
+
 <!doctype html>
 <html ⚡>
 <head>
@@ -40,35 +53,38 @@
   <main class="content">
     <h1 class="title new-item">New Product</h1>
     
-    <form>
+    <form action="../../actions/addProductAction.php" method="POST">
       <div class="input-field">
         <label for="sku" class="label">Product SKU</label>
-        <input type="text" id="sku" class="input-text" /> 
+        <input type="text" id="sku" class="input-text" name="sku"/> 
       </div>
       <div class="input-field">
         <label for="name" class="label">Product Name</label>
-        <input type="text" id="name" class="input-text" /> 
+        <input type="text" id="name" class="input-text" name="name"/> 
       </div>
       <div class="input-field">
         <label for="price" class="label">Price</label>
-        <input type="text" id="price" class="input-text" /> 
+        <input type="text" id="price" class="input-text" name="price"/> 
       </div>
       <div class="input-field">
         <label for="quantity" class="label">Quantity</label>
-        <input type="text" id="quantity" class="input-text" /> 
+        <input type="number" id="quantity" class="input-text" name="quant"/> 
       </div>
       <div class="input-field">
         <label for="category" class="label">Categories</label>
-        <select multiple id="category" class="input-text">
-          <option>Category 1</option>
-          <option>Category 2</option>
-          <option>Category 3</option>
-          <option>Category 4</option>
+        <select multiple id="category" class="input-text" name="categories[]">
+
+          <?php if($getAllCategories != false): ?>
+            <?php foreach($getAllCategories as $item): ?>
+                <option value="<?= $item -> getId() ?>"><?= $item -> getName() ?></option>
+            <?php endforeach; ?>
+          <?php endif; ?>
+
         </select>
       </div>
       <div class="input-field">
         <label for="description" class="label">Description</label>
-        <textarea id="description" class="input-text"></textarea>
+        <textarea id="description" class="input-text" name="desc"></textarea>
       </div>
       <div class="actions-form">
         <a href="products.php" class="action back">Back</a>
@@ -88,5 +104,11 @@
 	  <span>go@jumpers.com.br</span>
 	</div>
 </footer>
- <!-- Footer --></body>
+ <!-- Footer -->
+
+ <script>
+
+ </script>
+
+</body>
 </html>
