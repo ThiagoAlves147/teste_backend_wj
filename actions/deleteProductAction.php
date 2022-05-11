@@ -10,16 +10,16 @@ if($id){
     $deleteProduct = $productPdo -> deleteProduct($id);
 
     if($deleteProduct != true){
-        $_SESSION['error'] = 'Não foi possivél deletar este produto, favor tentar novamente!';
+        $_SESSION['error'] = 'It was not possible to delete the product!';
         header('Location: ../assets/pages/products.php');
         exit;
     }
 
-    $_SESSION['success'] = 'Ação bem sucedida! Produto deletado';
+    $_SESSION['success'] = 'Product deleted with success!';
     header('Location: ../assets/pages/products.php');
     exit;
 }
 
-$_SESSION['error'] = 'Produto não encontrado, favor tentar novamente!';
+$_SESSION['error'] = 'Product was not found, please try again!';
 header('Location: ../assets/pages/products.php');
 exit;

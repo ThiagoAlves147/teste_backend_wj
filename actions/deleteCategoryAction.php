@@ -7,9 +7,9 @@ $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if($id){
     $categoryPdo = new CategoryDaoMySql($pdo);
-    $deleteCategory = $categoryPdo -> deleteCategory($id);
+    $deleteCategory = $categoryPdo -> deleteCategory($id); //Chama o metódo para deletar a categoria
 
-    if($deleteCategory != true){
+    if($deleteCategory != true){ //Verifica se a categoria foi deletada
         $_SESSION['error'] = 'It was not possible to delete the category!';
         header('Location: ../assets/pages/categories.php');
         exit;

@@ -5,7 +5,7 @@
     
     if($pdo){
         $categoryPdo = new CategoryDaoMySql($pdo);
-        $getAllCategories = $categoryPdo -> findAll();
+        $getAllCategories = $categoryPdo -> findAllCategories();
     }else
         $getAllCategories = false;
         
@@ -66,7 +66,7 @@
     <?php endif; ?>
     <h1 class="title new-item">New Product</h1>
     
-    <form action="../../actions/addProductAction.php" method="POST">
+    <form action="../../actions/addProductAction.php" method="POST" enctype="multipart/form-data">
       <div class="input-field">
         <label for="sku" class="label">Product SKU</label>
         <input type="text" id="sku" class="input-text" name="sku"/> 
@@ -97,7 +97,10 @@
       </div>
       <div class="input-field">
         <label for="description" class="label">Description</label>
-        <textarea id="description" class="input-text" name="desc"></textarea>
+        <textarea id="description" class="input-text" name="desc" style="resize: none"></textarea>
+      </div>
+      <div class="input-field">
+        <input type="file" name="file">
       </div>
       <div class="actions-form">
         <a href="products.php" class="action back">Back</a>

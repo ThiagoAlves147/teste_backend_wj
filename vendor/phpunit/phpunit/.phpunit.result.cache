@@ -1,1 +1,1 @@
-{"version":1,"defects":{"CategoryDaoMySqlTest::testCanUpdateCategoryWithSuccess":4},"times":{"CategoryDaoMySqlTest::testCanUpdateCategoryWithSuccess":0.014}}
+{"version":1,"defects":{"CategoryDaoMySqlTest::testCanUpdateCategoryWithSuccess":4,"CategoryDaoMySqlTest::testCanAddWithSuccess":3},"times":{"CategoryDaoMySqlTest::testCanUpdateCategoryWithSuccess":0.02,"CategoryDaoMySqlTest::testCanAddWithSuccess":0.083,"CategoryDaoMySqlTest::testCanDeleteCategoryWithSuccess":0}}

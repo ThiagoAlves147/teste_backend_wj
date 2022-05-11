@@ -8,11 +8,11 @@ $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $quant = filter_input(INPUT_POST, 'quant', FILTER_VALIDATE_INT);
 $desc = filter_input(INPUT_POST, 'desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$categories = isset($_POST['categories']) ? $_POST['categories'] : false;
+$categories = isset($_POST['categories']) ? $_POST['categories'] : false; //Verefica se foi selecionado alguma categoria no formulário, caso não, retorna false
 
 if($categories && $sku && $name && $price && $quant && $desc){
     $productPdo = new ProductDaoMySql($pdo);
-    $find = $productPdo -> findProductByNameOrSku($name, $sku);
+    $find = $productPdo -> findProductByNameOrSku($name, $sku); //Busca a produto pelo nome ou sku, caso não encontre nada retorna false
 
     if($find === false){
         $product = new Product();
@@ -30,11 +30,11 @@ if($categories && $sku && $name && $price && $quant && $desc){
         exit;
     }else{
         $_SESSION['error'] = 'Request product failed!';
-        header('Location: ../assets/pages/addProduct.php');
+        header('Location: ../assets/pages/addProduct.php'); //Caso $find não seja false, significa que a categoria já existe e não pode ser adicionada
         exit;
     }
 }
 
-$_SESSION['error'] = 'Não foi possivel adicionar o produto, favor tentar novamente!';
+$_SESSION['error'] = 'It was not possible to add a category, please try again!';
 header('Location: ../assets/pages/addProduct.php');
 exit;
