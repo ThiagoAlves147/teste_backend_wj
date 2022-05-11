@@ -8,7 +8,7 @@ $cod = filter_input(INPUT_POST, 'cod', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 if($name && $cod){
     $categoryPdo = new CategoryDaoMySql($pdo);
-    $find = $categoryPdo -> findByNameOrCod($cod, $name);
+    $find = $categoryPdo -> findCategoryByNameOrCod($cod, $name);
 
     if($find === false){
         $category = new Category();
@@ -16,18 +16,18 @@ if($name && $cod){
         $category -> setName($name);
         $categoryPdo -> addCategory($category);
 
-        $_SESSION['success'] = "Action was a success";
+        $_SESSION['success'] = "The category was added with success!";
 
         header('Location: ../assets/pages/categories.php');
         exit;
 
     }else{
-        $_SESSION['error'] = 'Request failed!';
+        $_SESSION['error'] = 'This category already exists!';
         header('Location: ../assets/pages/addCategory.php');
         exit;
     }
 }
 
-$_SESSION['error'] = 'Não foi possivel adicionar, favor tentar novamente!';
+$_SESSION['error'] = 'It was not possible to add a category, please try again!';
 header('Location: ../assets/pages/addCategory.php');
 exit;

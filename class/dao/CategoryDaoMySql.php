@@ -63,7 +63,7 @@ class CategoryDaoMySql implements CategoryDAO {
 
     }
 
-    public function findAll(){
+    public function findAllCategories(){
         try{
             $sql = $this -> pdo -> prepare('SELECT * FROM categorias');
             $sql -> execute();
@@ -89,7 +89,7 @@ class CategoryDaoMySql implements CategoryDAO {
         }
     }
 
-    public function findById($id){
+    public function findCategoryById($id){
         try{
             $sql = $this -> pdo -> prepare('SELECT * FROM categorias WHERE id=:id');
             $sql -> bindValue(':id', $id);
@@ -116,7 +116,7 @@ class CategoryDaoMySql implements CategoryDAO {
 
     }
 
-    public function findByNameOrCod($cod, $name){ //
+    public function findCategoryByNameOrCod($cod, $name){ //
         try{
             $sql = $this -> pdo -> prepare('SELECT * FROM categorias WHERE nome=:name OR codigo=:cod');
             $sql -> bindValue(':name', $name);

@@ -51,7 +51,7 @@
 <!-- Header --><body>
   <!-- Main Content -->
   <main class="content">
-  <?php if(isset($_SESSION['success'])): ?>
+    <?php if(isset($_SESSION['success'])): ?>
         <div class="success">
             <div>
                 <?php
@@ -63,6 +63,18 @@
                 <img src="../images/bt-close.png" alt="close" width="20px" id="btn-close-success" style="cursor: pointer;">
             </div>
         </div>
+    <?php elseif(isset($_SESSION['error'])): ?>
+        <div class="error">
+              <div>
+                  <?php
+                      echo $_SESSION['error'] //Exibe a menssagem de erro
+                  ?>  
+              </div>
+
+              <div>
+                  <img src="../images/bt-close.png" alt="close" width="20px" id="btn-close-error" style="cursor: pointer;">
+              </div>
+          </div>
     <?php endif; ?>
     <div class="header-list-page">
       <h1 class="title">Products</h1>
@@ -82,9 +94,9 @@
         <th class="data-grid-th">
             <span class="data-grid-cell-content">Quantity</span>
         </th>
-        <th class="data-grid-th">
+        <!-- <th class="data-grid-th">
             <span class="data-grid-cell-content">Categories</span>
-        </th>
+        </th> -->
 
         <th class="data-grid-th">
             <span class="data-grid-cell-content">Actions</span>
@@ -109,9 +121,9 @@
                 <span class="data-grid-cell-content"><?= $item -> getQuant() ?></span>
               </td>
 
-              <td class="data-grid-td">
+              <!-- <td class="data-grid-td">
                 <span class="data-grid-cell-content">Category 1 <Br />Category 2</span>
-              </td>
+              </td> -->
             
               <td class="data-grid-td">
                 <div class="actions">
@@ -140,10 +152,21 @@
  <?php session_destroy() ?>
 
  <script>
-    let btnClose = document.querySelector('#btn-close-success')
-    btnClose.addEventListener('click', (e) => {
+    let btnCloseS = document.querySelector('#btn-close-success')
+    let btnCloseE = document.querySelector('#btn-close-error');
+
+    if(btnCloseS){
+      btnCloseS.addEventListener('click', (e) => {
         document.querySelector('.success').style.display = "none";
+      })
+    }
+    
+    if(btnCloseE){
+      btnCloseE.addEventListener('click', (e) => {
+        document.querySelector('.error').style.display = "none";
     })
+    }
+    
   </script>
 
 </body>

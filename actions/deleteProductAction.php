@@ -6,8 +6,8 @@ require_once "../vendor/autoload.php";
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if($id){
-    $category = new ProductDaoMySql($pdo);
-    $deleteProduct = $category -> deleteProduct($id);
+    $productPdo = new ProductDaoMySql($pdo);
+    $deleteProduct = $productPdo -> deleteProduct($id);
 
     if($deleteProduct != true){
         $_SESSION['error'] = 'Não foi possivél deletar este produto, favor tentar novamente!';

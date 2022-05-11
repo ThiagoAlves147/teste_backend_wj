@@ -6,20 +6,20 @@ require_once "../vendor/autoload.php";
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if($id){
-    $category = new CategoryDaoMySql($pdo);
-    $deleteCategory = $category -> deleteCategory($id);
+    $categoryPdo = new CategoryDaoMySql($pdo);
+    $deleteCategory = $categoryPdo -> deleteCategory($id);
 
     if($deleteCategory != true){
-        $_SESSION['error'] = 'Não foi possivél deletar está categoria, favor tentar novamente!';
+        $_SESSION['error'] = 'It was not possible to delete the category!';
         header('Location: ../assets/pages/categories.php');
         exit;
     }
 
-    $_SESSION['success'] = 'Ação bem sucedida! Categoria deletada';
+    $_SESSION['success'] = 'Category deleted with success!';
     header('Location: ../assets/pages/categories.php');
     exit;
 }
 
-$_SESSION['error'] = 'Categoria não encontrada, favor tentar novamente!';
+$_SESSION['error'] = 'Category was not found, please try again!';
 header('Location: ../assets/pages/categories.php');
 exit;

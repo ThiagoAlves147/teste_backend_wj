@@ -4,6 +4,7 @@
     },
     "autoload": {
         "classmap": [
+            "tests/",
             "class/dao/",
             "class/models/"
         ]

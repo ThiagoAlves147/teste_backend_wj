@@ -7,22 +7,24 @@
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
         if($id){
-            $product = new ProductDaoMySql($pdo);
-            $item = $product -> findProductById($id);
+            $productPdo = new ProductDaoMySql($pdo);
+            $item = $productPdo -> findProductById($id);
+            $getProductCategories = $productPdo -> findProductCategoriesById($id);
 
             if(!$item){
-                //$_SESSION['error'] = 'Product not found';
+              $_SESSION['error'] = 'Procuct was not found! Please, try again!';
                 header("Location: products.php");
                 exit;
             }
 
         }else{
-            //$_SESSION['error'] = 'Product not found';
+            $_SESSION['error'] = 'Procuct was not found! Please, try again!';
             header("Location: products.php");
             exit;
         }
             
     }
+
 ?>
 
 <!doctype html>
@@ -80,8 +82,8 @@
     <?php endif; ?>
     <h1 class="title new-item">New Product</h1>
     
-    <form action="../../actions/addProductAction.php" method="POST">
-    <input type="hidden" name="id" value="<?= $item -> getId()?>"/>
+    <form action="../../actions/updateProductAction.php" method="POST">
+      <input type="hidden" name="id" value="<?= $item -> getId()?>"/>
 
       <div class="input-field">
         <label for="sku" class="label">Product SKU</label>
@@ -103,7 +105,9 @@
         <label for="category" class="label">Categories</label>
         <select multiple id="category" class="input-text" name="categories[]">
 
-        <option value="ala">Teste</option>
+        <?php foreach($getProductCategories as $itemC): ?>
+          <option><?= $itemC -> getCategories() ?></option>
+        <?php endforeach; ?>
 
         </select>
       </div>

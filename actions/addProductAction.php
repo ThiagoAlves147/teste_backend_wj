@@ -24,7 +24,7 @@ if($categories && $sku && $name && $price && $quant && $desc){
         $product -> setCategories($categories);
         $productPdo -> addProduct($product);
 
-        $_SESSION['success'] = "Action was a success";
+        $_SESSION['success'] = "The product was added with success!";
 
         header('Location: ../assets/pages/products.php');
         exit;

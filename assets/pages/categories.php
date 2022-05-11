@@ -5,7 +5,7 @@
     
     if($pdo){
         $categoryPdo = new CategoryDaoMySql($pdo);
-        $getAllCategories = $categoryPdo -> findAll();
+        $getAllCategories = $categoryPdo -> findAllCategories();
     }else
         $getAllCategories = false;
         

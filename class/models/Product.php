@@ -74,9 +74,11 @@ class Product {
 
 interface ProductDAO {
     public function addProduct(Product $p);
+    public function addProductCategory(Product $p);
     public function updateProduct(Product $p);
     public function deleteProduct($id);
     public function findAllProducts();
     public function findProductById($id);
     public function findProductByNameOrSku($name, $sku);
+    public function findProductCategoriesById($id);
 }

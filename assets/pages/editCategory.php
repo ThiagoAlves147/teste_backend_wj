@@ -8,7 +8,7 @@
 
         if($id){
             $category = new CategoryDaoMySql($pdo);
-            $item = $category -> findById($id);
+            $item = $category -> findCategoryById($id);
 
             if(!$item){
                 //$_SESSION['error'] = 'Category not found';
