@@ -55,7 +55,7 @@ class Product {
 
 
     public function setDesc($desc){
-        $this -> desc = trim(strtoupper($desc));;
+        $this -> desc = trim(ucfirst(strtolower($desc)));;
     }
 
     public function getDesc(){

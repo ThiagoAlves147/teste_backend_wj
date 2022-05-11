@@ -1,14 +1,28 @@
 <?php 
     session_start();
-    require "../../config.php";
-    require_once "../../vendor/autoload.php";
-    
-    if($pdo){
-        $categoryPdo = new CategoryDaoMySql($pdo);
-        $getAllCategories = $categoryPdo -> findAll();
-    }else
-        $getAllCategories = false;
-        
+    require_once "../../config.php";
+    require_once "../../vendor/autoload.php"; 
+
+    if($pdo != false){
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+        if($id){
+            $product = new ProductDaoMySql($pdo);
+            $item = $product -> findProductById($id);
+
+            if(!$item){
+                //$_SESSION['error'] = 'Product not found';
+                header("Location: products.php");
+                exit;
+            }
+
+        }else{
+            //$_SESSION['error'] = 'Product not found';
+            header("Location: products.php");
+            exit;
+        }
+            
+    }
 ?>
 
 <!doctype html>
@@ -67,37 +81,35 @@
     <h1 class="title new-item">New Product</h1>
     
     <form action="../../actions/addProductAction.php" method="POST">
+    <input type="hidden" name="id" value="<?= $item -> getId()?>"/>
+
       <div class="input-field">
         <label for="sku" class="label">Product SKU</label>
-        <input type="text" id="sku" class="input-text" name="sku"/> 
+        <input type="text" id="sku" class="input-text" name="sku" value="<?= $item -> getSku()?>"/> 
       </div>
       <div class="input-field">
         <label for="name" class="label">Product Name</label>
-        <input type="text" id="name" class="input-text" name="name"/> 
+        <input type="text" id="name" class="input-text" name="name" value="<?= $item -> getName()?>"/> 
       </div>
       <div class="input-field">
         <label for="price" class="label">Price</label>
-        <input type="text" id="price" class="input-text" name="price"/> 
+        <input type="text" id="price" class="input-text" name="price" value="<?= $item -> getPrice()?>"/> 
       </div>
       <div class="input-field">
         <label for="quantity" class="label">Quantity</label>
-        <input type="number" id="quantity" class="input-text" name="quant"/> 
+        <input type="number" id="quantity" class="input-text" name="quant" value="<?= $item -> getQuant()?>"/> 
       </div>
       <div class="input-field">
         <label for="category" class="label">Categories</label>
         <select multiple id="category" class="input-text" name="categories[]">
 
-          <?php if($getAllCategories != false): ?>
-            <?php foreach($getAllCategories as $item): ?>
-                <option value="<?= $item -> getId() ?>"><?= $item -> getName() ?></option>
-            <?php endforeach; ?>
-          <?php endif; ?>
+        <option value="ala">Teste</option>
 
         </select>
       </div>
       <div class="input-field">
         <label for="description" class="label">Description</label>
-        <textarea id="description" class="input-text" name="desc"></textarea>
+        <textarea id="description" class="input-text" name="desc"><?= $item -> getDesc() ?></textarea>
       </div>
       <div class="actions-form">
         <a href="products.php" class="action back">Back</a>

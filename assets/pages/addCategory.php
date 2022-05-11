@@ -40,7 +40,7 @@
 <!-- Header -->
   <!-- Main Content -->
   <main class="content">
-  <?php if(isset($_SESSION['error'])): ?>
+    <?php if(isset($_SESSION['error'])): ?>
         <div class="error">
             <div>
                 <?php

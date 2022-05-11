@@ -1,9 +1,9 @@
-const inputName = document.querySelector('#category-name')
+const inputPrice = document.querySelector('#price')
 
-document.querySelector('#category-name').addEventListener('keypress', (e) => {
+inputPrice.addEventListener('keypress', (e) => {
     const keyCode = (e.keyCode ? e.keyCode : e.wich)
 
-    if(keyCode > 47 && keyCode < 58){
+    if(keyCode > 57 && keyCode < 127){
         e.preventDefault()
     }
 })

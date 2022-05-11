@@ -1,3 +1,16 @@
+<?php 
+    session_start();
+    require "../../config.php";
+    require_once "../../vendor/autoload.php";
+    
+    if($pdo){
+        $productPdo = new ProductDaoMySql($pdo);
+        $getAllProducts = $productPdo -> findAllProducts();
+    }else
+        $getAllProducts = false;
+        
+?>
+
 <!doctype html>
 <html ⚡>
 <head>
@@ -38,6 +51,19 @@
 <!-- Header --><body>
   <!-- Main Content -->
   <main class="content">
+  <?php if(isset($_SESSION['success'])): ?>
+        <div class="success">
+            <div>
+                <?php
+                    echo $_SESSION['success'] //Exibe a menssagem de erro
+                ?>  
+            </div>
+
+            <div>
+                <img src="../images/bt-close.png" alt="close" width="20px" id="btn-close-success" style="cursor: pointer;">
+            </div>
+        </div>
+    <?php endif; ?>
     <div class="header-list-page">
       <h1 class="title">Products</h1>
       <a href="addProduct.php" class="btn-action">Add new Product</a>
@@ -64,62 +90,38 @@
             <span class="data-grid-cell-content">Actions</span>
         </th>
       </tr>
-      <tr class="data-row">
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Product 1 Name</span>
-        </td>
-      
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">SKU1</span>
-        </td>
+      <?php if($getAllProducts != false): ?>
+          <?php foreach($getAllProducts as $item): ?>
+            <tr class="data-row">
+              <td class="data-grid-td">
+                <span class="data-grid-cell-content"><?= $item -> getName() ?></span>
+              </td>
+            
+              <td class="data-grid-td">
+                <span class="data-grid-cell-content"><?= $item -> getSku() ?></span>
+              </td>
 
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">R$ 19,90</span>
-        </td>
+              <td class="data-grid-td">
+                <span class="data-grid-cell-content"><?php echo "R$ ".$item -> getPrice() ?></span>
+              </td>
 
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">100</span>
-        </td>
+              <td class="data-grid-td">
+                <span class="data-grid-cell-content"><?= $item -> getQuant() ?></span>
+              </td>
 
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Category 1 <Br />Category 2</span>
-        </td>
-      
-        <td class="data-grid-td">
-          <div class="actions">
-            <div class="action edit"><span>Edit</span></div>
-            <div class="action delete"><span>Delete</span></div>
-          </div>
-        </td>
-      </tr>
-      <tr class="data-row">
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Product 2 Name</span>
-        </td>
-      
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">SKU2</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">R$ 59,90</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">999</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Category 1</span>
-        </td>
-      
-        <td class="data-grid-td">
-          <div class="actions">
-            <div class="action edit"><span>Edit</span></div>
-            <div class="action delete"><span>Delete</span></div>
-          </div>
-        </td>
-      </tr>
+              <td class="data-grid-td">
+                <span class="data-grid-cell-content">Category 1 <Br />Category 2</span>
+              </td>
+            
+              <td class="data-grid-td">
+                <div class="actions">
+                    <a href="../pages/editProduct.php?id=<?= $item -> getId() ?>" class="action edit action-link"><span>Edit</span></div>
+                    <a href="../../actions/deleteProductAction.php?id=<?= $item -> getId() ?>" class="action delete action-link" onclick="return confirm('Tem certeza que deseja deletar?')"><span>Delete</span></div>
+                </div>
+              </td>
+            </tr>
+        <?php endforeach; ?>     
+       <?php endif; ?> 
     </table>
   </main>
   <!-- Main Content -->
@@ -133,5 +135,16 @@
 	  <span>go@jumpers.com.br</span>
 	</div>
 </footer>
- <!-- Footer --></body>
+ <!-- Footer -->
+
+ <?php session_destroy() ?>
+
+ <script>
+    let btnClose = document.querySelector('#btn-close-success')
+    btnClose.addEventListener('click', (e) => {
+        document.querySelector('.success').style.display = "none";
+    })
+  </script>
+
+</body>
 </html>
