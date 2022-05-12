@@ -13,13 +13,13 @@ $categories = isset($_POST['categories']) ? $_POST['categories'] : false; //Vere
 if($_FILES['file']['size'] != 0){ //Verifica se foi enviado algum arquivo
     if(in_array($_FILES['file']['type'], array('image/jpeg', 'image/png', 'image/jpg'))){
         $nameFile = md5(time().rand(0, 100)).'.jpeg';
-        move_uploaded_file($_FILES['file']['tmp_name'], '../assets/images/product/'.$nameFile);
     } else{
         $_SESSION['error'] = 'Essa extensão de arquivo não é permitida';
         header('Location: ../assets/pages/addProduct.php');
         exit;
     }
-}
+} else 
+    $nameFile = false;
 
 if($categories && $sku && $name && $price && $quant && $desc){
     $productPdo = new ProductDaoMySql($pdo);
@@ -37,6 +37,7 @@ if($categories && $sku && $name && $price && $quant && $desc){
             $product -> setImage($nameFile);
         }
         $productPdo -> addProduct($product);
+        move_uploaded_file($_FILES['file']['tmp_name'], '../assets/images/product/'.$nameFile); //Salva a imagem na pasta /assets/images/product
         
         $_SESSION['success'] = "The product was added with success!";
 
