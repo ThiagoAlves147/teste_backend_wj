@@ -23,7 +23,7 @@ class ProductDaoMySql implements ProductDAO {
             $this -> addProductCategory($p);
 
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/addProduct.php');
             exit;
         }
@@ -43,7 +43,7 @@ class ProductDaoMySql implements ProductDAO {
                 $sql -> execute();
             }
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/addProduct.php');
             exit;
         }
@@ -70,7 +70,7 @@ class ProductDaoMySql implements ProductDAO {
             return true;
 
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/editProduct.php?id='.$p -> getId());
             exit;
         }
@@ -89,7 +89,7 @@ class ProductDaoMySql implements ProductDAO {
             return true;
 
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/products.php');
             exit;
         }
@@ -119,7 +119,7 @@ class ProductDaoMySql implements ProductDAO {
             }
 
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/products.php');
             exit;
         }
@@ -148,7 +148,7 @@ class ProductDaoMySql implements ProductDAO {
             return false;
 
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/editProduct.php'.$id);
             exit;
         }
@@ -175,7 +175,7 @@ class ProductDaoMySql implements ProductDAO {
             return false;
 
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/addProduct.php');
             exit;
         }
@@ -208,7 +208,7 @@ class ProductDaoMySql implements ProductDAO {
             return false;
 
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/editProduct.php'.$id);
             exit;
         }

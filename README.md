@@ -1,48 +1,32 @@
-# Você quer ser um desenvolvedor Backend na Web Jump?
-Criamos esse teste para avaliar seus conhecimentos e habilidades como desenvolvedor backend.
+# Teste_NT
 
-# O teste
-O desafio é desenvolver um sistema de gerenciamento de produtos. Esse sistema será composto de um cadastro de produtos e categorias. Os requisitos desse sistema estão listados nos tópicos abaixo.
-Não existe certo ou errado, queremos saber como você se sai em situações reais como esse desafio.
+# Sobre o projeto
 
-# Instruções
-- O foco principal do nosso teste é o backend. Para facilitar você poderá utilizar os arquivos html  disponíveis no diretório assets
-- Crie essa aplicação como se fosse uma aplicação real, que seria utilizada pelo WebJump
-- Fique à vontade para usar bibliotecas/componentes externos (composer)
-- Não utilize nenhum Framework, tais como Laravel, Lumen ou Symphony
-- Seguir princípios **SOLID** 
-- Utilize boas práticas de programação
-- Utilize boas práticas de git
-- Documentar como rodar o projeto
-- Crie uma documentação simples comentando sobre as tecnologias, versões e soluções adotadas
+Um simulador de ligação, o qual simula o valor que irá ficar determinada ligação com base em sua origem e destino.
 
-# Requisitos
-- O sistema deverá ser desenvolvido utilizando a linguagem PHP (de preferência a versão mais nova) ou outra linguagem se assim foi especificado para sua avaliação por nossa equipe.
-- Você deve criar um CRUD que permita cadastrar as seguintes informações:
-	- **Produto**: Nome, SKU (Código), preço, descrição, quantidade e categoria (cada produto pode conter uma ou mais categorias)
-	- **Categoria**: Código e nome.
-- Salvar as informações necessárias em um banco de dados (relacional ou não), de sua escolha
+# Baixando repositório
 
-# Opcionais
-- Gerar logs das ações
-- Testes automatizados com informação da cobertura de testes
-- Upload de imagem no cadastro de produtos
+git clone https://github.com/ThiagoAlves147/Teste_NT.git
 
-# O que será avaliado
-- Estrutura e organização do código e dos arquivos
-- Soluções adotadas
-- Tecnologias utilizadas
-- Qualidade
-- Padrões PSR, Design Patterns
-- Enfim, tudo será observado e levado em conta
+# Docker
 
-# Como iniciar o desenvolvimento
-- **Fork** esse repositório na sua conta do BitBucket.
-- Crie uma branch com o nome **desafio**
+## Execução
 
-# Como enviar seu teste
-Envie um email para [carreira@webjump.com.br] com o link do seu repositório.
+docker-compose up -d || docker-compose up
 
-Se o seu repositório for privado, conceda acesso aos emails: eliel.depaula@webjump.com.br, deocleciano.junior@webjump.com.br, gustavo.alves@webjump.com.br.
+## Layout 
 
-Qualquer dúvida sobre o teste, fique a vontade para entrar em contato conosco.
+![image](https://user-images.githubusercontent.com/91577622/164888430-87c78325-400c-44c4-8ff0-acea642add20.png)
+![image](https://user-images.githubusercontent.com/91577622/164888408-7fd76d5c-4aa2-43c1-b4ba-7c0fb499642e.png)
+
+# Tecnologias utilizadas
+- PHP
+- MYSQL
+- DOCKER
+- HTML
+- CSS
+- JAVASCRIPT
+
+# Autor
+
+Thiago Alves Pereira

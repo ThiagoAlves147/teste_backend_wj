@@ -14,7 +14,7 @@ class CategoryDaoMySql implements CategoryDAO {
             $sql -> bindValue(':name', $c -> getName());
             $sql -> execute();
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/addCategory.php');
             exit;
         }
@@ -36,7 +36,7 @@ class CategoryDaoMySql implements CategoryDAO {
             return true;
 
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/editCategory.php?id='.$c -> getId());
             exit;
         }
@@ -56,7 +56,7 @@ class CategoryDaoMySql implements CategoryDAO {
             return true;
 
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/categories.php');
             exit;
         }
@@ -83,7 +83,7 @@ class CategoryDaoMySql implements CategoryDAO {
                 return $list;
             }
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/categories.php');
             exit;
         }
@@ -109,7 +109,7 @@ class CategoryDaoMySql implements CategoryDAO {
             return false;
 
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/editCategory.php');
             exit;
         }
@@ -137,7 +137,7 @@ class CategoryDaoMySql implements CategoryDAO {
             return false;
 
         } catch(PDOException $e){
-            $_SESSION['error'] = $e -> getMessage();
+            $_SESSION['error'] = 'Error '.$e -> getCode().': Please, try again in a few minutes!';
             header('Location: ../../assets/pages/addCategory.php');
             exit;
         }

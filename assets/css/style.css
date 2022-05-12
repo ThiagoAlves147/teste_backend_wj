@@ -307,8 +307,22 @@ body {
       border-color: #f5c2c7;
     }
 
+    #file {
+      font-size: 16px;
+      margin-left: 25%;
+    }
+
     @media only screen and (max-width: 360px) {
       .product-list img {
         width: 144px;
       }
     }
+
+    @media (max-width: 1115px) {
+
+      #divFile {
+        display: flex;
+        justify-content: left;
+      }
+  
+  }

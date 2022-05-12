@@ -32,6 +32,6 @@ if($name && $cod && $id){
     }
 }
 
-$_SESSION['error'] = 'Request failed!';
+$_SESSION['error'] = 'Fill all required fields !';
 header('Location: ../assets/pages/editCategory.php?id='.$id);
 exit;

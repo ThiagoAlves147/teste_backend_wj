@@ -11,13 +11,13 @@
             $item = $category -> findCategoryById($id);
 
             if(!$item){
-                //$_SESSION['error'] = 'Category not found';
+                $_SESSION['error'] = 'Category was not found! Please, try again!';
                 header("Location: categories.php");
                 exit;
             }
 
         }else{
-            //$_SESSION['error'] = 'Category not found';
+            $_SESSION['error'] = 'Category was not found! Please, try again!';
             header("Location: categories.php");
             exit;
         }

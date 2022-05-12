@@ -99,8 +99,8 @@
         <label for="description" class="label">Description</label>
         <textarea id="description" class="input-text" name="desc" style="resize: none"></textarea>
       </div>
-      <div class="input-field">
-        <input type="file" name="file">
+      <div class="input-field" id="divFile">
+        <input type="file" name="file"  id="file">
       </div>
       <div class="actions-form">
         <a href="products.php" class="action back">Back</a>

@@ -63,6 +63,18 @@
                 <img src="../images/bt-close.png" alt="close" width="20px" id="btn-close-success" style="cursor: pointer;">
             </div>
         </div>
+    <?php elseif(isset($_SESSION['error'])): ?>
+        <div class="error">
+            <div>
+                <?php
+                    echo $_SESSION['error'] //Exibe a menssagem de erro
+                ?>  
+            </div>
+
+            <div>
+                <img src="../images/bt-close.png" alt="close" width="20px" id="btn-close-error" style="cursor: pointer;">
+            </div>
+        </div>
     <?php endif; ?>
     <div class="header-list-page">
       <h1 class="title">Categories</h1>
@@ -121,10 +133,20 @@
   <?php session_destroy() ?>
   
 <script>
-    let btnClose = document.querySelector('#btn-close-success')
-    btnClose.addEventListener('click', (e) => {
+    let btnCloseS = document.querySelector('#btn-close-success')
+    let btnCloseE = document.querySelector('#btn-close-error');
+
+    if(btnCloseS){
+      btnCloseS.addEventListener('click', (e) => {
         document.querySelector('.success').style.display = "none";
+      })
+    }
+    
+    if(btnCloseE){
+      btnCloseE.addEventListener('click', (e) => {
+        document.querySelector('.error').style.display = "none";
     })
+    }
 </script>
 
 </body>
