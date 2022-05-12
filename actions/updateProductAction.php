@@ -22,11 +22,7 @@ if($id && $sku && $name && $price && $quant && $desc){
         $product -> setPrice($price);
         $product -> setQuant($quant);
         $product -> setDesc($desc);
-        $teste = $productPdo -> updateProduct($product);
-
-        if($teste != true){
-            exit;
-        }
+        $productPdo -> updateProduct($product);
 
         $_SESSION['success'] = "Product has been updated!";
 
