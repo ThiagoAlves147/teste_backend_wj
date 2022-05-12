@@ -8,14 +8,9 @@ Um cadastro de produtos básico, com upload de arquivos.
 
 git clone https://ThiagoAlves147@bitbucket.org/thiagoalves147/assessment-backend-xp.git
 
-# Docker
-
-## Execução
+# Rodando o projeto
 
 docker-compose up -d || docker-compose up
-
-# Baixar dependências
-
 composer install
 
 # Tecnologias utilizadas

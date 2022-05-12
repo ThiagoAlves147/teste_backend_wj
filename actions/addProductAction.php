@@ -10,15 +10,16 @@ $quant = filter_input(INPUT_POST, 'quant', FILTER_VALIDATE_INT);
 $desc = filter_input(INPUT_POST, 'desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $categories = isset($_POST['categories']) ? $_POST['categories'] : false; //Verefica se foi selecionado alguma categoria no formulário, caso não, retorna false
 
-if(in_array($_FILES['file']['type'], array('image/jpeg', 'image/png', 'image/jpg'))){
-    $nameFile = md5(time().rand(0, 100)).'.jpeg';
-    move_uploaded_file($_FILES['file']['tmp_name'], '../assets/images/product/'.$nameFile);
-} else{
-    $_SESSION['error'] = 'Essa extensão de arquivo não é permitida';
-    header('Location: ../assets/pages/addProduct.php');
-    exit;
+if(isset($_FILES['file']['name'])){
+    if(in_array($_FILES['file']['type'], array('image/jpeg', 'image/png', 'image/jpg'))){
+        $nameFile = md5(time().rand(0, 100)).'.jpeg';
+        move_uploaded_file($_FILES['file']['tmp_name'], '../assets/images/product/'.$nameFile);
+    } else{
+        $_SESSION['error'] = 'File extension not allowed!';
+        header('Location: ../assets/pages/addProduct.php');
+        exit;
+    }
 }
-
 
 if($categories && $sku && $name && $price && $quant && $desc){
     $productPdo = new ProductDaoMySql($pdo);
@@ -48,6 +49,6 @@ if($categories && $sku && $name && $price && $quant && $desc){
     }
 }
 
-$_SESSION['error'] = 'It was not possible to add a category, please try again!';
+$_SESSION['error'] = 'It was not possible to add the product, please try again!';
 header('Location: ../assets/pages/addProduct.php');
 exit;
