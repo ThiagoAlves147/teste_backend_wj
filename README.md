@@ -6,7 +6,7 @@ Um cadastro de produtos básico, com upload de arquivos.
 
 # Baixando repositório
 
-git clone https://github.com/ThiagoAlves147/teste_backend_wj.git
+git clone https://ThiagoAlves147@bitbucket.org/thiagoalves147/assessment-backend-xp.git
 
 # Docker
 

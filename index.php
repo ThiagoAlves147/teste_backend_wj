@@ -35,8 +35,8 @@
   <a href="index.php"><img src="assets/images/menu-go-jumpers.png" alt="Welcome" width="200" height="43" /></a>
   <div>
     <ul>
-      <li><a href="assets/pages/categories.php" class="link-menu">Categorias</a></li>
-      <li><a href="assets/pages/products.php" class="link-menu">Produtos</a></li>
+      <li><a href="assets/pages/categories.php" class="link-menu">Categories</a></li>
+      <li><a href="assets/pages/products.php" class="link-menu">Products</a></li>
     </ul>
   </div>
 </amp-sidebar>

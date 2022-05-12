@@ -29,7 +29,7 @@ if($id && $sku && $name && $price && $quant && $desc){
         header('Location: ../assets/pages/products.php');
         exit;
     }else{
-        $_SESSION['error'] = 'Request product failed!';
+        $_SESSION['error'] = 'Product was not found, please try again!';
         header('Location: ../assets/pages/editProduct.php?id='.$id);
         exit;
     }
