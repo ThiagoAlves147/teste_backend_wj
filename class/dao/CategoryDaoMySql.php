@@ -21,7 +21,7 @@ class CategoryDaoMySql implements CategoryDAO {
 
     }
 
-    public function updateCategory(Category $c){
+    public function updateCategory(Category $c){ //Editar uma categoria já existente
         try{
             $sql = $this -> pdo -> prepare("UPDATE categorias SET codigo=:cod, nome=:name WHERE id=:id");
             $sql -> bindValue(':id', $c -> getId());
@@ -43,7 +43,7 @@ class CategoryDaoMySql implements CategoryDAO {
 
     }
 
-    public function deleteCategory($id){
+    public function deleteCategory($id){ //Deleta uma categoria
         try{
             $sql = $this -> pdo -> prepare('DELETE FROM categorias WHERE id=:id');
             $sql -> bindValue(':id', $id);
@@ -63,7 +63,7 @@ class CategoryDaoMySql implements CategoryDAO {
 
     }
 
-    public function findAllCategories(){
+    public function findAllCategories(){ //Busca todas as categorias
         try{
             $sql = $this -> pdo -> prepare('SELECT * FROM categorias');
             $sql -> execute();
@@ -89,7 +89,7 @@ class CategoryDaoMySql implements CategoryDAO {
         }
     }
 
-    public function findCategoryById($id){
+    public function findCategoryById($id){ //Busca uma categoria pelo id
         try{
             $sql = $this -> pdo -> prepare('SELECT * FROM categorias WHERE id=:id');
             $sql -> bindValue(':id', $id);
@@ -116,7 +116,7 @@ class CategoryDaoMySql implements CategoryDAO {
 
     }
 
-    public function findCategoryByNameOrCod($cod, $name){ //
+    public function findCategoryByNameOrCod($cod, $name){ //Busca uma categoria pelo codigo ou  nome
         try{
             $sql = $this -> pdo -> prepare('SELECT * FROM categorias WHERE nome=:name OR codigo=:cod');
             $sql -> bindValue(':name', $name);

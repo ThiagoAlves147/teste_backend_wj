@@ -8,6 +8,7 @@ class Product {
     private $quant;
     private $desc;
     private $categories;
+    private $image;
 
     public function setId($id){
         $this -> id = $id;
@@ -69,6 +70,15 @@ class Product {
 
     public function getCategories(){
         return $this -> categories;
+    }
+
+
+    public function setImage($image){
+        $this -> image = $image;
+    }
+
+    public function getImage(){
+        return $this -> image;
     }
 }
 

@@ -19,14 +19,14 @@ if($name && $cod && $id){
         $updateCategory = $categoryPdo -> updateCategory($category);
 
         if($updateCategory === true){
-            $_SESSION['success'] = "Ação bem sucedida! Categoria atualizada";
+            $_SESSION['success'] = "Category has been update!";
 
             header('Location: ../assets/pages/categories.php');
             exit;
         }
 
     }else{
-        $_SESSION['error'] = 'Request failed!';
+        $_SESSION['error'] = 'Category was not found, please try again!';
         header('Location: ../assets/pages/editCategory.php?id='.$id);
         exit;
     }

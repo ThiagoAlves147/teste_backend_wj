@@ -22,7 +22,7 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
-      # - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
 
     environment: 
       - MYSQL_DATABASE=db_teste_WebJump

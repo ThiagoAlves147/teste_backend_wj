@@ -3,7 +3,11 @@
     require "config.php";
     require_once "vendor/autoload.php";
 
-    $teste = new CategoryDaoMySql($pdo);
+    if($pdo){
+      $productPdo = new ProductDaoMySql($pdo);
+      $getAllProducts = $productPdo -> findAllProducts();
+      $count = $getAllProducts ? count($getAllProducts) : 0;
+    }
 
 ?>
 
@@ -51,19 +55,23 @@
       <h1 class="title">Dashboard</h1>
     </div>
     <div class="infor">
-      You have 4 products added on this store: <a href="assets/pages/addProduct.php" class="btn-action">Add new Product</a>
+      You have <?= $count ?> products added on this store: <a href="assets/pages/addProduct.php" class="btn-action">Add new Product</a>
     </div>
     <ul class="product-list">
-      <li>
-        <div class="product-image">
-          <img src="assets/images/product/tenis-runner-bolt.png" layout="responsive" width="164" height="145" alt="Tênis Runner Bolt" />
-        </div>
-        <div class="product-info">
-          <div class="product-name"><span>Tênis Runner Bolt</span></div>
-          <div class="product-price"><span class="special-price">9 available</span> <span>R$459,99</span></div>
-        </div>
-      </li>
-      <li>
+      <?php if($getAllProducts != false): ?>
+        <?php foreach($getAllProducts as $item): ?>
+          <li>
+            <div class="product-image">
+              <img src="assets/images/product/<?= $item -> getImage() ?>" layout="responsive" width="164" height="145" alt="Tênis Runner Bolt" />
+            </div>
+            <div class="product-info">
+              <div class="product-name"><span><?= $item -> getName() ?></span></div>
+              <div class="product-price"><span class="special-price"><?= $item -> getQuant() ?> available</span> <span>R$<?= str_replace('.', ',', $item -> getPrice()) ?></span></div>
+            </div>
+          </li>
+        <?php endforeach; ?>
+      <?php endif; ?>
+      <!-- <li>
         <div class="product-image">
           <a href="tenis-basket-light.html" title="Tênis Basket Light">
             <img src="assets/images/product/tenis-basket-light.png" layout="responsive" width="164" height="145" alt="Tênis Basket Light" />
@@ -93,7 +101,7 @@
           <div class="product-name"><span>Tênis Sneakers 43N</span></div>
           <div class="product-price"><span class="special-price">Out of stock</span> <span>R$459,99</span></div>
         </div>
-      </li>
+      </li> -->
     </ul>
   </main>
   <!-- Main Content -->

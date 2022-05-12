@@ -9,14 +9,15 @@ class ProductDaoMySql implements ProductDAO {
 
     public function addProduct(Product $p){
         try{
-            $sql = $this -> pdo -> prepare('INSERT INTO produtos(nome, sku, preco, quant, descricao) 
-            VALUES(:name, :sku, :price, :quant, :desc)');
+            $sql = $this -> pdo -> prepare('INSERT INTO produtos(nome, sku, preco, quant, descricao, imagem) 
+            VALUES(:name, :sku, :price, :quant, :desc, :img)');
 
             $sql -> bindValue(':name', $p -> getName());
             $sql -> bindValue(':sku', $p -> getSku());
             $sql -> bindValue(':price', $p -> getPrice());
             $sql -> bindValue(':quant', $p -> getQuant());
             $sql -> bindValue(':desc', $p -> getDesc());
+            $sql -> bindValue(':img', $p -> getImage());
             $sql -> execute();
 
             $this -> addProductCategory($p);
@@ -109,19 +110,7 @@ class ProductDaoMySql implements ProductDAO {
                     $product -> setSku($item['sku']);
                     $product -> setPrice($item['preco']);
                     $product -> setQuant($item['quant']);
-
-                    // $id = $product -> setId($item['id']);
-                    // $sql = $this -> pdo -> query("SELECT categorias.nome 
-                    // FROM categorias, produto_categoria, produtos
-                    // WHERE produtos.id = produto_categoria.id_produto
-                    // AND categorias.id = produto_categoria.id_categoria
-                    // AND produtos.id = $id
-                    // ORDER BY produtos.nome");
-                    // $dataCategory = $sql -> fetchAll();
-
-                    // foreach($dataCategory as $itemCategory){
-                    //     $product -> setCategories($itemCategory['categorias.nome']);
-                    // }
+                    $product -> setImage($item['imagem']);
 
                     $list[] = $product;
                 }
