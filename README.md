@@ -14,6 +14,10 @@ git clone https://github.com/ThiagoAlves147/teste_backend_wj.git
 
 docker-compose up -d || docker-compose up
 
+# Baixar dependências
+
+composer install
+
 # Tecnologias utilizadas
 - PHP
 - MYSQL
