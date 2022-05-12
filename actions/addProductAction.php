@@ -49,6 +49,6 @@ if($categories && $sku && $name && $price && $quant && $desc){
     }
 }
 
-$_SESSION['error'] = 'It was not possible to add a category, please try again!';
+$_SESSION['error'] = 'It was not possible to add a category, please try again!';//Retorna uma mensagem de rro caso não tenha encontrado o produto
 header('Location: ../assets/pages/addProduct.php');
 exit;

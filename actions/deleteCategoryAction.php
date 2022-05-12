@@ -20,6 +20,6 @@ if($id){
     exit;
 }
 
-$_SESSION['error'] = 'Category was not found, please try again!';
+$_SESSION['error'] = 'Category was not found, please try again!'; //Retorna um erro caso a categoria não tenha sido encontrada
 header('Location: ../assets/pages/categories.php');
 exit;

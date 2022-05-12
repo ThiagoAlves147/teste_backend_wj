@@ -16,7 +16,7 @@ if($name && $cod){ //Verifica se os dois valores estão preenchidos
         $category -> setName($name);
         $categoryPdo -> addCategory($category);
 
-        $_SESSION['success'] = "The category was added with success!";
+        $_SESSION['success'] = "The category was added with success!"; //Retorna uma mesagem de sucesso caso a ação de adicionar categoria tenha sido efetuada com succeso
 
         header('Location: ../assets/pages/categories.php');
         exit;
