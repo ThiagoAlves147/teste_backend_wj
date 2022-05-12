@@ -1,4 +1,4 @@
-# Teste_NT
+# Teste_WJ
 
 # Sobre o projeto
 
@@ -10,8 +10,8 @@ git clone https://ThiagoAlves147@bitbucket.org/thiagoalves147/assessment-backend
 
 # Rodando o projeto
 
-docker-compose up -d || docker-compose up
-composer install
+- docker-compose up -d || docker-compose up
+- composer install
 
 # Tecnologias utilizadas
 - PHP
