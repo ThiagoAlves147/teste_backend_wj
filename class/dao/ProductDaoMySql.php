@@ -3,11 +3,11 @@
 class ProductDaoMySql implements ProductDAO {
     private $pdo;
 
-    public function __construct($pdo){
+    public function __construct($pdo){ //Recebe a conexão com o banco de dados
         $this -> pdo = $pdo;
     }
 
-    public function addProduct(Product $p){
+    public function addProduct(Product $p){ //Adiciona um produto novo
         try{
             $sql = $this -> pdo -> prepare('INSERT INTO produtos(nome, sku, preco, quant, descricao, imagem) 
             VALUES(:name, :sku, :price, :quant, :desc, :img)');
@@ -29,7 +29,7 @@ class ProductDaoMySql implements ProductDAO {
         }
     }
 
-    public function addProductCategory(Product $p){
+    public function addProductCategory(Product $p){ //Adiciona as categorias aos produtos
         try{
             $categories = $p -> getCategories();
             $id = $this -> pdo -> lastInsertId();
@@ -50,7 +50,7 @@ class ProductDaoMySql implements ProductDAO {
 
     }
 
-    public function updateProduct(Product $p){
+    public function updateProduct(Product $p){ //Atualiza o produto
         try{
             $sql = $this -> pdo -> prepare("UPDATE produtos 
             SET nome=:name, sku=:sku, preco=:price, quant=:quant, descricao=:desc  
@@ -76,7 +76,7 @@ class ProductDaoMySql implements ProductDAO {
         }
     }
 
-    public function deleteProduct($id){
+    public function deleteProduct($id){ //Deleta o produto
         try{
             $sql = $this -> pdo -> prepare('DELETE FROM produtos WHERE id=:id');
             $sql -> bindValue(':id', $id);
@@ -95,7 +95,7 @@ class ProductDaoMySql implements ProductDAO {
         }
     }
 
-    public function findAllProducts(){
+    public function findAllProducts(){ //Busca todos os produtos
         try{
             $sql = $this -> pdo -> prepare('SELECT * FROM produtos ORDER BY nome');
             $sql -> execute();
@@ -125,7 +125,7 @@ class ProductDaoMySql implements ProductDAO {
         }
     }
 
-    public function findProductById($id){
+    public function findProductById($id){ //Busca o produto pelo id
         try{
             $sql = $this -> pdo -> prepare('SELECT * FROM produtos WHERE id=:id');
             $sql -> bindValue(':id', $id);
@@ -154,7 +154,7 @@ class ProductDaoMySql implements ProductDAO {
         }
     }
 
-    public function findProductByNameOrSku($name, $sku){
+    public function findProductByNameOrSku($name, $sku){ //Busca o produto pelo nome ou sku
         try{
             $sql = $this -> pdo -> prepare('SELECT * FROM produtos WHERE nome=:name OR sku=:sku');
             $sql -> bindValue(':name', $name);
@@ -181,7 +181,7 @@ class ProductDaoMySql implements ProductDAO {
         }
     }
 
-    public function findProductCategoriesById($id){
+    public function findProductCategoriesById($id){ //Busca todas as categorias referentes a determinado produto pelo id
         try{
             $sql = $this -> pdo -> prepare("SELECT categorias.nome as nome
             FROM categorias, produtos, produto_categoria

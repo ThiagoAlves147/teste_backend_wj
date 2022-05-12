@@ -3,11 +3,11 @@
     require "../../config.php";
     require_once "../../vendor/autoload.php";
     
-    if($pdo){
+    if($pdo){ //Verifica se existe uma conexão com o banco de dados
         $categoryPdo = new CategoryDaoMySql($pdo);
-        $getAllCategories = $categoryPdo -> findAllCategories();
+        $getAllCategories = $categoryPdo -> findAllCategories(); //Busca todas as categorias para exibir para o usuário
     }else
-        $getAllCategories = false;
+        $getAllCategories = false; 
         
 ?>
 
@@ -51,11 +51,11 @@
 <!-- Header --><body>
   <!-- Main Content -->
   <main class="content">
-    <?php if(isset($_SESSION['success'])): ?>
+    <?php if(isset($_SESSION['success'])): ?> 
         <div class="success">
             <div>
                 <?php
-                    echo $_SESSION['success'] //Exibe a menssagem de erro
+                    echo $_SESSION['success'] //Exibe a menssagem de successo
                 ?>  
             </div>
 
@@ -93,8 +93,8 @@
         </th>
       </tr>
 
-      <?php if($getAllCategories != false): ?>
-        <?php foreach($getAllCategories as $item): ?>
+      <?php if($getAllCategories != false): //Verifica se foi achado uma ou mais categorias?> 
+        <?php foreach($getAllCategories as $item): //Vai listar todas as categorias encontradas na tela?>
 
             <tr class="data-row">
                 <td class="data-grid-td">

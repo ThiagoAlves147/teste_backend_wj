@@ -55,7 +55,7 @@
         <div class="success">
             <div>
                 <?php
-                    echo $_SESSION['success'] //Exibe a menssagem de erro
+                    echo $_SESSION['success'] //Exibe a menssagem de successo
                 ?>  
             </div>
 

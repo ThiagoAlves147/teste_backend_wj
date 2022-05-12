@@ -32,7 +32,7 @@ class Category {
     }
 }
 
-interface CategoryDAO {
+interface CategoryDAO { //Todos os metódos que a classe CategoryDaoMySql precisa para funcionar
     public function addCategory(Category $c);
     public function updateCategory(Category $c);
     public function deleteCategory($id);

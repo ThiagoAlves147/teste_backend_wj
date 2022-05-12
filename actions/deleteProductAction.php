@@ -7,9 +7,9 @@ $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if($id){
     $productPdo = new ProductDaoMySql($pdo);
-    $deleteProduct = $productPdo -> deleteProduct($id);
+    $deleteProduct = $productPdo -> deleteProduct($id); //Chama o metodo para deletar o produto
 
-    if($deleteProduct != true){
+    if($deleteProduct != true){ //Verifica se foi retornado true ao chamar o metódo, caso não, então retorna um erro para o usuário
         $_SESSION['error'] = 'It was not possible to delete the product!';
         header('Location: ../assets/pages/products.php');
         exit;

@@ -3,15 +3,15 @@
     require_once "../../config.php";
     require_once "../../vendor/autoload.php"; 
 
-    if($pdo != false){
+    if($pdo != false){ //Verifica se existe uma conexão com o banco de dados
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
         if($id){
             $productPdo = new ProductDaoMySql($pdo);
-            $item = $productPdo -> findProductById($id);
-            $getProductCategories = $productPdo -> findProductCategoriesById($id);
+            $item = $productPdo -> findProductById($id); //Busca o produto pelo id passado pela url, para verificar se o mesmo existe
+            $getProductCategories = $productPdo -> findProductCategoriesById($id); //Busca todas as categorias daquele determinado produto
 
-            if(!$item){
+            if(!$item){ //Caso não tenha sido encontrado nenhum produto, retorna uma mensagem de erro
               $_SESSION['error'] = 'Procuct was not found! Please, try again!';
                 header("Location: products.php");
                 exit;

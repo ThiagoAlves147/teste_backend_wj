@@ -16,7 +16,7 @@ if($id && $sku && $name && $price && $quant && $desc){
 
     if($find != false){
         $product = new Product();
-        $product -> setSku($id);
+        $product -> setId($id);
         $product -> setSku($sku);
         $product -> setName($name);
         $product -> setPrice($price);

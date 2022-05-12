@@ -82,7 +82,7 @@ class Product {
     }
 }
 
-interface ProductDAO {
+interface ProductDAO { //Todos os metódos que a classe ProductDaoMySql precisa para funcionar
     public function addProduct(Product $p);
     public function addProductCategory(Product $p);
     public function updateProduct(Product $p);

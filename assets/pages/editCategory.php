@@ -3,14 +3,14 @@
     require_once "../../config.php";
     require_once "../../vendor/autoload.php"; 
 
-    if($pdo != false){
-        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    if($pdo != false){ //Verifica se existe uma conexão com o banco de dados
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); //Pega o id da categoria pela url
 
         if($id){
             $category = new CategoryDaoMySql($pdo);
-            $item = $category -> findCategoryById($id);
+            $item = $category -> findCategoryById($id); //Busca a categoria para verificar se ela existe
 
-            if(!$item){
+            if(!$item){ //Caso o usuário não exista, retorna uma mensagem de erro
                 $_SESSION['error'] = 'Category was not found! Please, try again!';
                 header("Location: categories.php");
                 exit;
