@@ -5,7 +5,7 @@ services:
   php:
     build: .
     image: php:8.1-apache
-    container_name: Teste_WebJump
+    container_name: Teste_WJ
     ports: 
       - "80:80"
       - "443:443"
@@ -17,7 +17,7 @@ services:
   mysql:
     image: mysql:latest
     restart: always
-    container_name: mysql-webJump
+    container_name: mysql-wj
     ports:
       - "3306:3306"
     volumes:
@@ -25,8 +25,8 @@ services:
       - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
 
     environment: 
-      - MYSQL_DATABASE=db_teste_WebJump
-      - MYSQL_USER=webJump
+      - MYSQL_DATABASE=db_teste_WJ
+      - MYSQL_USER=teste
       - MYSQL_PASSWORD=12345
       - MYSQL_ROOT_PASSWORD=12345
     networks:
