@@ -7,6 +7,7 @@ Este é um projeto back-end, no qual seria um cadastro de produtos e categorias 
 # Baixando repositório
 
 git clone https://ThiagoAlves147@bitbucket.org/thiagoalves147/assessment-backend-xp.git
+git clone https://github.com/ThiagoAlves147/teste_backend_wj.git
 
 # Rodando o projeto
 
