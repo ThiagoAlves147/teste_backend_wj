@@ -2,12 +2,12 @@
 
 # Sobre o projeto
 
-Este é um projeto back-end, no qual seria um cadastro de produtos e categorias usando boas práticas de programação com pdo.
+Este é um projeto back-end, no qual o é um cadastro de produtos e categorias usando boas práticas de programação com pdo.
 
 # Baixando repositório
 
-git clone https://ThiagoAlves147@bitbucket.org/thiagoalves147/assessment-backend-xp.git
-git clone https://github.com/ThiagoAlves147/teste_backend_wj.git
+- git clone https://ThiagoAlves147@bitbucket.org/thiagoalves147/assessment-backend-xp.git
+- git clone https://github.com/ThiagoAlves147/teste_backend_wj.git
 
 # Rodando o projeto
 
