@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `db_teste_WebJump`;
-USE `db_teste_WebJump`;
+CREATE DATABASE IF NOT EXISTS `db_teste_WJ`;
+USE `db_teste_WJ`;
 
 CREATE TABLE IF NOT EXISTS `categorias` (
   `id` int NOT NULL AUTO_INCREMENT,
